@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stichting Asha - SPA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 100px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 400px; /* Max width for the modal */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -12,20 +51,31 @@
     <header class="bg-white shadow-md fixed w-full z-10">
         <div class="container mx-auto flex justify-between items-center p-4">
             <div class="flex items-center">
-                <img src="assets/asha-logo.png" alt="Logo" class="h-10 mr-2"> <!-- Zorg ervoor dat het pad klopt -->
+                <img src="assets/asha-logo.png" alt="Logo" class="h-10 mr-2">
                 <h1 class="text-2xl font-bold">Stichting Asha</h1>
             </div>
-            <nav class="space-x-4">
+            <nav class="hidden md:flex space-x-4">
                 <a href="#home" class="hover:text-blue-600">Home</a>
                 <a href="#projecten" class="hover:text-blue-600">Projecten</a>
                 <a href="#agenda" class="hover:text-blue-600">Agenda</a>
                 <a href="#contact" class="hover:text-blue-600">Contact</a>
+                <a href="#admin" class="hover:text-blue-600">Beheerder</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-blue-600 focus:outline-none">☰</button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <nav class="flex flex-col space-y-2 p-4 bg-white">
+                <a href="#home" class="hover:text-blue-600">Home</a>
+                <a href="#projecten" class="hover:text-blue-600">Projecten</a>
+                <a href="#agenda" class="hover:text-blue-600">Agenda</a>
+                <a href="#contact" class="hover:text-blue-600">Contact</a>
+                <a href="#admin" class="hover:text-blue-600">Beheerder</a>
             </nav>
         </div>
     </header>
 
     <!-- Home Sectie -->
-    <section id="home" class="bg-blue-600 text-white py-40 text-center mt-16">
+    <section id="home" class="bg-blue-600 text-white py-40 text-center">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold mb-4">Welkom bij Stichting Asha</h2>
             <p class="text-lg">Stichting Asha (Asha = Hoop in het Hindi) is een vrijwilligersorganisatie van Surinaamse Hindostanen in de gemeente Utrecht. De organisatie is in 1976 opgericht en wil met haar activiteiten een positieve bijdrage leveren aan het gemeentelijke integratie- en participatiebeleid.</p>
@@ -33,34 +83,22 @@
     </section>
 
     <!-- Projecten Sectie -->
-    <section id="projecten" class="py-20">
+    <section id="projecten" class="py-20 bg-gray-100">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-semibold mb-4">Onze Projecten</h2>
-            <p class="text-gray-600 mb-8">Hier zijn enkele van onze lopende projecten:</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Onderwijs</h3>
-                    <p class="text-gray-600">Initiatieven gericht op het verbeteren van onderwijs en leren binnen de gemeenschap.</p>
+            <p class="text-gray-600 mb-8">Bekijk de projecten die wij ondersteunen:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold">Project 1</h3>
+                    <p class="text-gray-600">Korte beschrijving van project 1.</p>
                 </div>
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Meetings</h3>
-                    <p class="text-gray-600">Regelmatige bijeenkomsten om de voortgang en samenwerking te bespreken.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold">Project 2</h3>
+                    <p class="text-gray-600">Korte beschrijving van project 2.</p>
                 </div>
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Ondersteuning</h3>
-                    <p class="text-gray-600">Hulp en ondersteuning voor mensen in nood binnen de gemeenschap.</p>
-                </div>
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Technologie</h3>
-                    <p class="text-gray-600">Projecten die technologie en innovatie bevorderen voor een betere toekomst.</p>
-                </div>
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Diner</h3>
-                    <p class="text-gray-600">Gezellige dinerevenementen om de gemeenschap te verenigen en te ondersteunen.</p>
-                </div>
-                <div class="bg-white p-6 shadow-md rounded-lg w-72">
-                    <h3 class="text-xl font-bold mb-2">Bijeenkomsten</h3>
-                    <p class="text-gray-600">Evenementen en bijeenkomsten om de gemeenschap te betrekken en te ondersteunen.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold">Project 3</h3>
+                    <p class="text-gray-600">Korte beschrijving van project 3.</p>
                 </div>
             </div>
         </div>
@@ -118,136 +156,186 @@
                 </div>
                 <div class="mb-4">
                     <label for="event-description" class="block text-gray-700">Beschrijving</label>
-                    <textarea id="event-description" class="w-full p-2 border border-gray-300 rounded-md" rows="3" placeholder="Voeg een beschrijving van het evenement toe"></textarea>
+                    <textarea id="event-description" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Voeg een beschrijving toe..."></textarea>
                 </div>
-                <button type="button" onclick="addEvent()" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700">Voeg Evenement Toe</button>
+                <button type="button" onclick="addEvent()" class="bg-blue-600 text-white px-4 py-2 rounded-md">Evenement Toevoegen</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 text-center">
-        <p>&copy; 2023 Stichting Asha. Alle rechten voorbehouden.</p>
-    </footer>
+    <!-- Modal voor Bevestiging -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 class="text-xl mb-4">Bevestiging</h2>
+            <p>Weet u zeker dat u dit evenement wilt verwijderen?</p>
+            <button id="confirmDelete" class="bg-red-500 text-white px-4 py-2 rounded-md">Ja, verwijder</button>
+            <button id="cancelDelete" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md">Annuleer</button>
+        </div>
+    </div>
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // JavaScript om evenementen toe te voegen en weer te geven
-        const events = {
-            '2024-10-10': 'Evenement 1',
-            '2024-10-15': 'Evenement 2',
-            '2024-10-20': 'Evenement 3',
-            '2024-11-05': 'Evenement 4',
-            '2024-11-10': 'Evenement 5'
+        let events = {
+            '2024-11-01': 'Evenement 1',
+            '2024-11-05': 'Evenement 2',
+            '2024-11-10': 'Evenement 5',
         };
-    
+
         let currentDate = new Date();
-    
+        let eventToDelete = '';
+
         function renderCalendar() {
-            const monthYear = document.getElementById('monthYear');
             const calendar = document.getElementById('calendar');
+            const monthYear = document.getElementById('monthYear');
             calendar.innerHTML = '';
-    
-            // Instellen van de maand en jaar
+
             const month = currentDate.getMonth();
             const year = currentDate.getFullYear();
-            monthYear.innerText = `${currentDate.toLocaleString('nl-NL', { month: 'long' })} ${year}`;
-    
-            // Eerste dag van de maand
+
+            monthYear.innerText = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
-            // Lege cellen voor dagen van vorige maand
+
             for (let i = 0; i < firstDay; i++) {
                 const emptyCell = document.createElement('div');
                 calendar.appendChild(emptyCell);
             }
-    
-            // Dagen van de maand
+
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayCell = document.createElement('div');
                 dayCell.className = 'border p-4 relative';
                 dayCell.innerText = day;
-    
+
                 const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 if (events[dateString]) {
                     const eventIndicator = document.createElement('span');
                     eventIndicator.className = 'absolute right-2 top-2 text-red-500';
-                    eventIndicator.innerText = '•'; // Event indicator
+                    eventIndicator.innerText = '•';
                     dayCell.appendChild(eventIndicator);
-                    dayCell.title = events[dateString]; // Tooltip with event description
+                    dayCell.title = events[dateString];
                 }
-    
+
                 calendar.appendChild(dayCell);
             }
-    
-            // Lijst van evenementen
+
             renderEventList();
         }
-    
+
         function renderEventList() {
             const eventList = document.getElementById('eventList');
             eventList.innerHTML = '';
             for (const [date, description] of Object.entries(events)) {
                 const listItem = document.createElement('li');
-                listItem.className = 'bg-white p-4 shadow-md rounded-lg';
-                listItem.innerText = `${description} - ${date}`;
+                listItem.className = 'bg-white p-4 shadow-md rounded-lg flex justify-between items-center';
+
+                listItem.innerHTML = `
+                    <div class="flex-1">
+                        <span class="text-2xl font-semibold">${description}</span>
+                        <p class="text-gray-600">${date}</p>
+                    </div>
+                    <div>
+                        <button onclick="editEvent('${date}')" class="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Wijzig</button>
+                        <button onclick="openDeleteModal('${date}')" class="bg-red-500 text-white px-3 py-1 rounded">Verwijder</button>
+                    </div>
+                `;
                 eventList.appendChild(listItem);
             }
         }
-    
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
-        });
-    
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        });
 
-        // Functie om evenement toe te voegen
-        function addEvent() {
-            const name = document.getElementById("event-name").value;
-            const date = document.getElementById("event-date").value;
-            const description = document.getElementById("event-description").value;
+        function openDeleteModal(date) {
+            eventToDelete = date; // Save the date to be deleted
+            const modal = document.getElementById('confirmModal');
+            modal.style.display = "block"; // Show the modal
+        }
 
-            if (name && date && description) {
-                events[date] = name; // Voeg evenement toe aan de events array
-                const newEvent = { name, date, description };
-                displayEvents();
-                
-                // Velden leegmaken na toevoegen
-                document.getElementById("event-name").value = '';
-                document.getElementById("event-date").value = '';
-                document.getElementById("event-description").value = '';
-            } else {
-                alert("Vul alle velden in om een evenement toe te voegen.");
+        function closeDeleteModal() {
+            const modal = document.getElementById('confirmModal');
+            modal.style.display = "none"; // Hide the modal
+        }
+
+        function editEvent(date) {
+            const eventList = document.getElementById('eventList');
+            const listItems = eventList.getElementsByTagName('li');
+
+            for (const listItem of listItems) {
+                const eventDate = listItem.querySelector('p').innerText;
+                if (eventDate === date) {
+                    const description = listItem.querySelector('.text-2xl').innerText;
+                    listItem.innerHTML = `
+                        <div class="flex-1">
+                            <input type="text" class="text-2xl font-semibold border-b border-gray-300 focus:outline-none" value="${description}" id="event-${date}" />
+                            <p class="text-gray-600">${date}</p>
+                        </div>
+                        <div>
+                            <button onclick="updateEvent('${date}')" class="bg-green-500 text-white px-3 py-1 rounded mr-2">Opslaan</button>
+                            <button onclick="cancelEdit('${date}')" class="bg-gray-500 text-white px-3 py-1 rounded">Annuleer</button>
+                        </div>
+                    `;
+                    break;
+                }
             }
         }
 
-        // Functie om evenementen weer te geven
-        function displayEvents() {
-            const eventList = document.getElementById("eventList");
-            eventList.innerHTML = '';
-
-            Object.keys(events).forEach(date => {
-                const eventItem = document.createElement("li");
-                eventItem.classList.add("bg-white", "p-4", "shadow-md", "rounded-lg");
-
-                eventItem.innerHTML = `
-                    <h4 class="text-2xl font-semibold">${events[date]}</h4>
-                    <p class="text-gray-600">${date}</p>
-                `;
-
-                eventList.appendChild(eventItem);
-            });
-            renderCalendar(); // Verfris de kalender na toevoegen van een evenement
+        function cancelEdit(date) {
+            renderEventList();
         }
 
-        // Initiële render
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        }
+
+        function addEvent() {
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventDescription = document.getElementById('event-description').value;
+
+            if (eventName && eventDate && eventDescription) {
+                events[eventDate] = eventName;
+                document.getElementById('event-name').value = '';
+                document.getElementById('event-date').value = '';
+                document.getElementById('event-description').value = '';
+                renderCalendar();
+            } else {
+                alert('Vul alle velden in');
+            }
+        }
+
+        function deleteEvent() {
+            delete events[eventToDelete]; // Delete the saved event
+            renderCalendar();
+            closeDeleteModal(); // Close the modal
+        }
+
+        function updateEvent(date) {
+            const updatedEventName = document.getElementById(`event-${date}`).value;
+            if (updatedEventName) {
+                events[date] = updatedEventName;
+                renderCalendar();
+            }
+        }
+
+        // Toggle de mobiele menu
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close modal when clicking on close button
+        document.getElementById('closeModal').addEventListener('click', closeDeleteModal);
+        document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
+        document.getElementById('confirmDelete').addEventListener('click', deleteEvent);
+
+        document.getElementById('prevMonth').addEventListener('click', prevMonth);
+        document.getElementById('nextMonth').addEventListener('click', nextMonth);
+
         renderCalendar();
     </script>
-
 </body>
 </html>
